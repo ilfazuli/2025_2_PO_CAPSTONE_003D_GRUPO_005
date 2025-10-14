@@ -1,0 +1,115 @@
+body{font-family:Arial, sans-serif;margin:0}
+.res-page{max-width:980px;margin:40px auto;padding:0 24px;text-align:center}
+
+.res-toolbar{display:flex;justify-content:flex-start;margin:0 0 8px}
+.res-btn-azul{
+  display:inline-block;padding:10px 18px;border-radius:10px;
+  border:1px solid #0a74ff;background:#0a74ff;color:#fff;font-weight:700;
+  text-decoration:none;box-shadow:0 2px 0 rgba(0,0,0,.12)
+}
+.res-title{font-size:52px;margin:8px 0 18px}
+
+.res-card{
+  background:#fff;border:1px solid #E4E6EB;border-radius:18px;
+  box-shadow:0 10px 24px rgba(0,0,0,.06);padding:20px 24px 28px
+}
+
+.cal-head{display:flex;align-items:center;justify-content:center;gap:18px;margin:4px 0 12px}
+.cal-nav{border:1px solid #C9CDD4;background:#fff;width:40px;height:36px;border-radius:10px;cursor:pointer}
+.cal-title{margin:0;letter-spacing:.8px;font-weight:800;font-size:22px}
+
+.cal-box{width:900px;max-width:92vw;margin:0 auto;border:1px solid #DADDE3;padding:10px 12px;border-radius:12px}
+.cal-table{width:100%;border-collapse:collapse;table-layout:fixed;text-align:center;font-size:18px}
+.cal-table th,.cal-table td{border:1px solid #E5E7EB;height:84px;vertical-align:middle}
+.cal-table th{height:44px;background:#F4F6F9;font-weight:800;color:#4b5563}
+.cal-table td{transition:background .15s, box-shadow .15s, color .15s;cursor:pointer}
+.cal-table td:hover{background:#F2F7FF}
+.cal-table td.sel{background:#0a74ff;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)}
+.cal-table td.hoy{background:#EAF2FF;box-shadow:inset 0 0 0 2px #9DBDFF}
+.cal-table td.prev,.cal-table td.next{color:#c9c9c9;background:#fafafa;cursor:not-allowed;pointer-events:none}
+
+.res-controls{margin-top:18px}
+.mockup-layout{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:20px}
+.col-left{justify-self:start;text-align:left}
+.lbl{display:block;margin-bottom:6px;font-size:16px}
+.sel{min-width:260px;height:38px;padding:0 10px;border:1px solid #B9BDC5;border-radius:8px;background:#fff}
+.col-center{justify-self:center}
+.res-btn-outline{
+  padding:12px 36px;border:2px solid #C9CDD4;background:#fff;color:#333;border-radius:12px;
+  font-weight:600;cursor:pointer;box-shadow:0 2px 0 rgba(0,0,0,.12)
+}
+
+.res-card .reservar-btn{
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  min-width: 220px;
+  padding: 0 28px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: #0a74ff;
+  border: 1px solid #0a74ff;
+  border-radius: 14px;
+  box-shadow: 0 3px 0 rgba(0,0,0,.15);
+  transition: transform .1s, filter .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.res-card .reservar-btn:hover{ filter: brightness(1.05); }
+.res-card .reservar-btn:active{ transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.15); }
+
+.res-card .reservar-btn[disabled]{
+  opacity:.6; cursor:not-allowed; filter:none; transform:none; box-shadow:none;
+}
+
+.reservar-btn{
+  position: relative;            
+  overflow: hidden;               
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  min-width: 220px;
+  padding: 0 28px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: #0a74ff;
+  border: 1px solid #0a74ff;
+  border-radius: 14px;
+  box-shadow: 0 3px 0 rgba(0,0,0,.15);
+  transition: transform .1s, filter .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.reservar-btn:hover{ filter: brightness(1.05); }
+.reservar-btn:active{ transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.15); }
+
+.reservar-btn[disabled]{
+  opacity: .6;
+  cursor: not-allowed;
+  filter: none;
+  transform: none;
+  box-shadow: 0 0 0 rgba(0,0,0,0);
+}
+
+.cal-nav{
+  position: relative;              
+  overflow: hidden;         
+  border: 1px solid #C9CDD4;
+  background: #fff;
+  width: 44px;
+  height: 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background .2s, transform .08s, box-shadow .2s;
+  box-shadow: 0 2px 0 rgba(0,0,0,.12);
+}
+.cal-nav:hover{ background: #f6f7f9; }
+.cal-nav:active{ transform: translateY(1px); box-shadow: 0 1px 0 rgba(0,0,0,.12); }
+
+.btn-ripple { position: absolute; border-radius: 50%; transform: scale(0);
+  animation: ripple .55s ease-out; background: rgba(255,255,255,.45); pointer-events: none; }
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }

@@ -1,0 +1,45 @@
+body{font-family:Arial, sans-serif;margin:0}
+.doc-page{max-width:980px;margin:40px auto;padding:0 24px;text-align:center}
+
+.doc-toolbar{display:flex;justify-content:flex-start;margin:0 0 12px}
+.doc-btn-azul{
+  display:inline-block;padding:10px 18px;border-radius:10px;
+  border:1px solid #0a74ff;background:#0a74ff;color:#fff;
+  font-weight:700;text-decoration:none;box-shadow:0 2px 0 rgba(0,0,0,.12)
+}
+
+.doc-title{font-size:40px;margin:12px 0 18px}
+
+.doc-card{
+  background:#fff;border:1px solid #E4E6EB;border-radius:18px;
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
+  padding:28px 32px; display:flex; justify-content:center;
+}
+
+.doc-grid{
+  display:grid; grid-template-columns:max-content max-content;
+  column-gap:34px; row-gap:24px;
+  justify-content:center; justify-items:center;
+}
+
+.doc-label{justify-self:end;text-align:right;font-size:18px;color:#333}
+
+.doc-btn{
+  position:relative; overflow:hidden;
+  justify-self:start; display:inline-flex; align-items:center; justify-content:center;
+  padding:12px 36px; border:2px solid #C9CDD4; background:#fff; color:#333;
+  border-radius:12px; font-weight:600; text-decoration:none;
+  box-shadow:0 2px 0 rgba(0,0,0,.12);
+  transition:background .2s, transform .08s, box-shadow .2s, filter .2s;
+}
+.doc-btn:hover{ background:#f7f7f8 }
+.doc-btn:active{ transform:translateY(1px); box-shadow:0 1px 0 rgba(0,0,0,.12) }
+
+.doc-ripple{ position:absolute; border-radius:50%; transform:scale(0);
+  animation:doc-ripple .55s ease-out; background:rgba(0,0,0,.08); pointer-events:none; }
+@keyframes doc-ripple{ to{ transform:scale(4); opacity:0 } }
+
+@media (max-width:720px){
+  .doc-grid{ grid-template-columns:1fr; row-gap:14px }
+  .doc-label{ justify-self:center; text-align:center }
+}

@@ -1,0 +1,101 @@
+.page{ min-height:100vh; background:#f4f6f9; padding:24px; }
+.usuarios-layout{
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns:1fr 340px; gap:18px;
+}
+@media (max-width:980px){ .usuarios-layout{ grid-template-columns:1fr; } }
+
+.card{
+  background:#fff; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,.08);
+  padding:16px 18px;
+}
+.card-header h1{ margin:2px 0 10px; text-align:center; }
+.panel{ display:grid; gap:16px; }
+.panel .panel-card{
+  background:#fff; border-radius:12px; box-shadow:0 6px 16px rgba(0,0,0,.08);
+  padding:14px; display:flex; flex-direction:column; gap:12px;
+}
+.panel-actions{ display:flex; gap:10px; flex-wrap:nowrap; }
+@media (max-width:420px){ .panel-actions{ flex-wrap:wrap; } .panel-actions .btn{ flex:1 0 100%; } }
+.panel h3{ margin:0; text-align:center; }
+
+
+.filtros{ display:grid; gap:10px; }
+.filtro label{ font-weight:700; color:#374151; display:block; margin-bottom:4px; }
+.input{
+  border:1px solid #d1d5db; border-radius:8px; padding:8px 10px; font-size:14px; background:#fff;
+}
+.search{ display:flex; gap:8px; }
+.btn-light{ background:#f3f4f6; }
+.filtros--mobile{ display:none; margin-bottom:10px; }
+@media (max-width:980px){ .filtros--mobile{ display:grid; } }
+
+
+.tabla-wrap{ overflow-x:auto; }
+.tabla{
+  width:100%; min-width:960px; table-layout:fixed;
+  border-collapse:separate; border-spacing:0;
+  background:#fff; border-radius:10px; overflow:hidden; border:1px solid #d1d5db;
+}
+.tabla thead th{
+  background:#f8fafc; color:#111827; font-weight:700; padding:12px 10px;
+  border-bottom:1px solid #e5e7eb; text-align:left; white-space:nowrap;
+}
+.tabla td{
+  padding:12px 10px; border-bottom:1px solid #eef2f7;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap; vertical-align:middle;
+}
+.tabla tbody tr:last-child td{ border-bottom:0; }
+.tabla tbody tr:hover td{ background:#f9fafb; }
+.tabla tbody tr{ cursor:pointer; }
+
+
+.col-acciones{ width:120px; }              
+.acciones .row-actions{
+  display:flex; align-items:center; gap:8px; padding-left:6px;
+  opacity:0; transform:scale(.95); pointer-events:none;
+  transition:opacity .12s ease, transform .12s ease;
+}
+.tabla tbody tr.selected .acciones .row-actions{
+  opacity:1; transform:scale(1); pointer-events:auto;
+}
+.tabla tbody tr.selected td{ background:#eef2ff; }
+.tabla tbody tr.selected{ outline:2px solid #6366f1; outline-offset:-2px; }
+
+
+.btn{
+  padding:8px 14px; border:none; border-radius:8px; font-weight:700; cursor:pointer;
+  background:#e5e7eb; color:#111827; transition:transform .06s ease, opacity .2s ease;
+}
+.btn:hover{ transform:translateY(-1px); opacity:.95; }
+.btn-primary{ background:#3b82f6; color:#fff; }
+.btn-outline{ background:#fff; border:1px solid #d1d5db; }
+
+.icon-btn{
+  width:28px; height:28px; border-radius:6px; border:1px solid #d1d5db;
+  background:#fff; cursor:pointer; line-height:26px;
+}
+.icon-btn.view   { border-color:#bae6fd; background:#e0f2fe; } 
+.icon-btn.edit   { border-color:#fde68a; background:#fef3c7; } 
+.icon-btn.danger { border-color:#fecaca; background:#fee2e2; } 
+
+.badge{ display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; font-weight:700; }
+.badge-activo{ background:#dcfce7; color:#166534; }
+.badge-inactivo{ background:#fee2e2; color:#991b1b; }
+
+.modal{ position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(15,23,42,.5); z-index:60; }
+.modal-dialog{
+  background:#fff; border-radius:12px; padding:18px; width:min(520px, 92%); position:relative;
+  box-shadow:0 12px 28px rgba(0,0,0,.25);
+}
+.modal-close{ position:absolute; right:10px; top:10px; width:28px; height:28px; border-radius:999px; border:none; cursor:pointer; }
+.form-grid{ display:grid; gap:12px; }
+.form-actions{ display:flex; justify-content:flex-end; gap:10px; }
+
+
+.toast-area{ position:fixed; right:16px; top:16px; display:grid; gap:10px; z-index:70; }
+.toast{ background:#111827; color:#fff; padding:10px 12px; border-radius:10px; box-shadow:0 12px 28px rgba(0,0,0,.3); }
+.toast.success{ background:#16a34a; }
+
+
+.hidden{ display:none !important; }

@@ -1,45 +1,301 @@
-body{font-family:Arial, sans-serif;margin:0}
-.doc-page{max-width:980px;margin:40px auto;padding:0 24px;text-align:center}
-
-.doc-toolbar{display:flex;justify-content:flex-start;margin:0 0 12px}
-.doc-btn-azul{
-  display:inline-block;padding:10px 18px;border-radius:10px;
-  border:1px solid #0a74ff;background:#0a74ff;color:#fff;
-  font-weight:700;text-decoration:none;box-shadow:0 2px 0 rgba(0,0,0,.12)
+/* ===== RESET SENCILLO ===== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.doc-title{font-size:40px;margin:12px 0 18px}
-
-.doc-card{
-  background:#fff;border:1px solid #E4E6EB;border-radius:18px;
-  box-shadow:0 10px 24px rgba(0,0,0,.06);
-  padding:28px 32px; display:flex; justify-content:center;
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: radial-gradient(circle at top, #e0f2ff 0, #f3f4f6 40%, #f9fafb 100%);
+  color: #0f172a;
 }
 
-.doc-grid{
-  display:grid; grid-template-columns:max-content max-content;
-  column-gap:34px; row-gap:24px;
-  justify-content:center; justify-items:center;
+/* ===== CONTENEDOR GENERAL ===== */
+.doc-page {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px 40px;
 }
 
-.doc-label{justify-self:end;text-align:right;font-size:18px;color:#333}
-
-.doc-btn{
-  position:relative; overflow:hidden;
-  justify-self:start; display:inline-flex; align-items:center; justify-content:center;
-  padding:12px 36px; border:2px solid #C9CDD4; background:#fff; color:#333;
-  border-radius:12px; font-weight:600; text-decoration:none;
-  box-shadow:0 2px 0 rgba(0,0,0,.12);
-  transition:background .2s, transform .08s, box-shadow .2s, filter .2s;
+/* ===== TOOLBAR ===== */
+.doc-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 16px;
 }
-.doc-btn:hover{ background:#f7f7f8 }
-.doc-btn:active{ transform:translateY(1px); box-shadow:0 1px 0 rgba(0,0,0,.12) }
 
-.doc-ripple{ position:absolute; border-radius:50%; transform:scale(0);
-  animation:doc-ripple .55s ease-out; background:rgba(0,0,0,.08); pointer-events:none; }
-@keyframes doc-ripple{ to{ transform:scale(4); opacity:0 } }
+.doc-btn-azul {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #2563eb;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.28);
+  transition: transform 0.12s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
 
-@media (max-width:720px){
-  .doc-grid{ grid-template-columns:1fr; row-gap:14px }
-  .doc-label{ justify-self:center; text-align:center }
+.doc-btn-azul:hover {
+  filter: brightness(1.03);
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.doc-btn-azul:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.35);
+}
+
+/* ===== TITULO ===== */
+.doc-title {
+  font-size: 1.9rem;
+  margin: 8px 0 4px;
+  text-align: center;
+  color: #0f172a;
+}
+
+.doc-subtitle {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+/* ===== CARD PRINCIPAL ===== */
+.doc-card {
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  padding: 22px 26px;
+  margin-top: 18px;
+}
+
+.doc-empty {
+  margin: 10px 0;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* ===== FILAS DE DOCUMENTOS ===== */
+.doc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.doc-row:last-child {
+  border-bottom: none;
+}
+/* ===== FILAS DE DOCUMENTOS ===== */
+.doc-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.doc-row:last-child {
+  border-bottom: none;
+}
+
+/* NUEVAS COLUMNAS */
+.doc-col-left {
+  flex: 0 0 32%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: left;
+}
+
+.doc-col-middle {
+  flex: 0 0 28%;
+  font-size: 0.9rem;
+  color: #64748b;
+  text-align: center;           
+}
+
+.doc-col-right {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .doc-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doc-col-left,
+  .doc-col-middle,
+  .doc-col-right {
+    width: 100%;
+    text-align: left;
+  }
+
+  .doc-col-middle {
+    margin-top: 4px;
+  }
+
+  .doc-col-right {
+    justify-content: flex-start;
+  }
+
+  .doc-btn,
+  .doc-btn-secondary,
+  .doc-btn-disabled {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ===== BOTONES ===== */
+.doc-btn,
+.doc-btn-secondary,
+.doc-btn-disabled {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  border-width: 1px;
+  border-style: solid;
+  transition: background 0.16s ease, color 0.16s ease,
+              box-shadow 0.16s ease, transform 0.08s ease, filter 0.16s ease;
+}
+
+/* Primario: botón "Ver" */
+.doc-btn {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45);
+}
+
+.doc-btn:hover {
+  filter: brightness(1.05);
+}
+
+.doc-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.45);
+}
+
+/* Secundario: botón "Descargar" */
+.doc-btn-secondary {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+  color: #1d4ed8;
+  box-shadow: 0 4px 10px rgba(148, 163, 184, 0.35);
+}
+
+.doc-btn-secondary:hover {
+  background: #dbeafe;
+}
+
+/* Deshabilitado */
+.doc-btn-disabled {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: default;
+  box-shadow: none;
+}
+
+/* ===== EFECTO RIPPLE ===== */
+.doc-ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: doc-ripple 0.55s ease-out;
+  background: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+
+@keyframes doc-ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .doc-page {
+    margin: 28px auto;
+    padding: 0 16px 28px;
+  }
+
+  .doc-card {
+    padding: 18px 18px;
+  }
+
+  .doc-row {
+    gap: 12px;
+  }
+}
+
+/* Móvil <= 640px */
+@media (max-width: 640px) {
+  .doc-page {
+    margin-top: 24px;
+  }
+
+  .doc-title {
+    font-size: 1.5rem;
+  }
+
+  .doc-card {
+    padding: 16px 14px;
+  }
+
+  .doc-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .doc-label {
+    text-align: left;
+    width: 100%;
+  }
+
+  .doc-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .doc-info {
+    margin-right: 0;
+    margin-bottom: 6px;
+  }
+
+  .doc-btn,
+  .doc-btn-secondary,
+  .doc-btn-disabled {
+    width: 100%;
+    justify-content: center;
+  }
 }

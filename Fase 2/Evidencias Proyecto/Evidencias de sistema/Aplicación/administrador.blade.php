@@ -20,17 +20,12 @@
             <span class="menu-desc">Crear, Editar, Eliminar</span>
           </a>
             
-          <a href="{{ url('/administrador_vehiculo') }}" class="menu-button">
+          <a href="{{ route('admin.vehiculos.index') }}" class="menu-button">
             <span class="menu-title">Gestión de vehículos</span>
             <span class="menu-desc">Crear, Editar, Eliminar</span>
           </a>
             
-          <a href="#" class="menu-button">
-            <span class="menu-title">Generación de reportes</span>
-            <span class="menu-desc">Actividades, tiempos y KPI</span>
-          </a>
-            
-          <a href="#" class="menu-button">
+          <a href="{{ route('admin.ots.index') }}" class="menu-button">
             <span class="menu-title">Visualización de OT</span>
             <span class="menu-desc">Órdenes de trabajo en curso</span>
           </a>

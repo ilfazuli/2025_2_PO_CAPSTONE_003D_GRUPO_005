@@ -1,0 +1,501 @@
+/* ==========================
+   Layout general página OT
+========================== */
+
+.page--ots {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 1.5rem 1.25rem 2rem;
+  background: #f3f5f9;
+}
+
+/* Toolbar superior (volver)  */
+.res-toolbar{
+  display:flex;
+  justify-content:flex-start;
+  margin:0 0 12px;
+}
+
+.res-btn-azul{
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:10px;
+  border:1px solid #0a74ff;
+  background:#0a74ff;
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+  box-shadow:0 2px 0 rgba(0,0,0,.12);
+}
+
+
+/* ==========================
+   Grid principal
+========================== */
+
+.ots-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* Tarjetas base */
+.card,
+.panel-card {
+  background: #ffffff;
+  border-radius: 1.25rem;
+  border: 1px solid #dde3f0;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* ==========================
+   Card principal tabla OT
+========================== */
+
+.card-main {
+  padding: 1.25rem 1.25rem 1rem;
+}
+
+.card-header {
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: .85rem;
+  margin-bottom: 1rem;
+}
+
+.card-header--flex {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem;
+}
+
+.card-header h1 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+}
+
+.card-header .sub {
+  margin: .15rem 0 0;
+  color: #6b7280;
+  font-size: .9rem;
+}
+
+/* ==========================
+   Header actions / filtros
+========================== */
+
+.header-actions {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: flex-end;
+}
+
+/* Contenedor filtros */
+.form-filtros-ot {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+  align-items: flex-end;
+}
+
+.filtros-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+  align-items: flex-end;
+}
+
+.filtro {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  min-width: 150px;
+}
+
+.filtro label {
+  font-size: .78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  color: #64748b;
+}
+
+.filtro .input {
+  border-radius: .65rem;
+  border: 1px solid #cbd5e1;
+  padding: .4rem .6rem;
+  font-size: .85rem;
+  min-height: 2.1rem;
+  outline: none;
+  background: #f8fafc;
+  transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
+}
+
+.filtro .input:focus {
+  background: #ffffff;
+  border-color: #0b63ce;
+  box-shadow: 0 0 0 1px rgba(11, 99, 206, 0.2);
+}
+
+.filtro.is-focused .input {
+  border-color: #0b63ce;
+}
+
+/* Bloque de botones filtros */
+.filtro--acciones {
+  display: flex;
+  flex-direction: row;
+  gap: .4rem;
+  align-items: center;
+}
+
+/* ==========================
+   Botones genéricos
+========================== */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  border-radius: .75rem;
+  padding: .45rem .85rem;
+  border: 1px solid transparent;
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .15s, color .15s, border-color .15s, box-shadow .15s, transform .08s;
+}
+
+.btn.sm {
+  padding: .35rem .7rem;
+  font-size: .78rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg,#0b63ce,#0d8cf0);
+  border-color: #0b63ce;
+  color: #fff;
+  box-shadow: 0 3px 8px rgba(11, 99, 206, 0.3);
+}
+.btn-primary:hover {
+  filter: brightness(1.02);
+  box-shadow: 0 4px 10px rgba(11, 99, 206, 0.35);
+}
+.btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 6px rgba(11, 99, 206, 0.3);
+}
+
+.btn-outline {
+  background: #ffffff;
+  color: #0b63ce;
+  border-color: #cbd5e1;
+}
+.btn-outline:hover {
+  border-color: #0b63ce;
+  background: #e0f2ff;
+}
+.btn-outline:active {
+  transform: translateY(1px);
+}
+
+/* Botón export en estado loading */
+.btn.is-loading {
+  opacity: .8;
+  cursor: wait;
+}
+.btn .spinner {
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(15, 23, 42, 0.2);
+  border-top-color: #0b63ce;
+  animation: spin .7s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================
+   Tabla de OT
+========================== */
+
+.tabla-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.tabla thead {
+  background: #f8fafc;
+}
+
+.tabla th,
+.tabla td {
+  padding: .55rem .6rem;
+  font-size: .82rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.tabla th {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.tabla tbody tr:nth-child(even) {
+  background: #fafbff;
+}
+
+.tabla tbody tr:hover {
+  background: #eef4ff;
+}
+
+/* Fila seleccionada */
+.tabla tbody tr.selected {
+  background: #e0edff;
+}
+
+/* Columna folio copiable */
+.col-folio {
+  cursor: pointer;
+  color: #0b63ce;
+  font-weight: 600;
+  position: relative;
+}
+.col-folio.copied::after {
+  content: 'Copiado';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 100%;
+  margin-left: .35rem;
+  font-size: .7rem;
+  color: #059669;
+}
+
+/* Texto estados */
+.muted {
+  color: #9ca3af;
+  font-size: .85rem;
+}
+
+/* Paginación (Laravel links) */
+.paginacion {
+  margin-top: .75rem;
+}
+.paginacion nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ==========================
+   Panel lateral: ranking
+========================== */
+
+.panel-side {
+  padding: 1rem;
+}
+
+.panel-card {
+  padding: 1rem 1rem 1.1rem;
+}
+
+.panel-card h3 {
+  margin: 0 0 .6rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.ranking-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.ranking-item {
+  border-radius: .85rem;
+  border: 1px solid #e2e8f0;
+  padding: .45rem .65rem;
+  background: linear-gradient(135deg,#f8fafc,#eff6ff);
+}
+
+.rk-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .5rem;
+}
+
+.rk-nombre {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.rk-count {
+  font-size: .8rem;
+  font-weight: 600;
+  color: #0b63ce;
+  background: #dbeafe;
+  padding: .15rem .55rem;
+  border-radius: 999px;
+}
+
+.rk-email {
+  font-size: .75rem;
+  color: #6b7280;
+  margin-top: .2rem;
+}
+
+/* ==========================
+   Toasts
+========================== */
+
+.toast-area {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  z-index: 9999;
+}
+
+.toast {
+  min-width: 180px;
+  max-width: 260px;
+  padding: .55rem .75rem;
+  border-radius: .75rem;
+  background: #0f172a;
+  color: #fff;
+  font-size: .8rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.4);
+  opacity: 0.97;
+  transform: translateY(0);
+  transition: opacity .25s, transform .25s;
+}
+.toast span {
+  display: block;
+}
+
+.toast-success {
+  background: #16a34a;
+}
+.toast-error {
+  background: #dc2626;
+}
+.toast-info {
+  background: #0f172a;
+}
+
+.toast.is-hiding {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ==========================
+   Responsivo
+========================== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .ots-layout {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  }
+
+  .card-header--flex {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    align-items: flex-start;
+  }
+
+  .filtros-row {
+    justify-content: flex-start;
+  }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+  .page--ots {
+    padding: 1rem .75rem 1.5rem;
+  }
+
+  .ots-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .panel-side {
+    padding: .75rem;
+  }
+
+  .card-main {
+    padding: 1rem .75rem .85rem;
+  }
+
+  .tabla {
+    min-width: 100%; /* se hará scroll horizontal igual en el wrap */
+  }
+
+  .card-header--flex {
+    gap: .75rem;
+  }
+
+  .filtros-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filtro,
+  .filtro--acciones {
+    width: 100%;
+  }
+
+  .header-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .header-actions > .btn,
+  .header-actions .btn {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .paginacion nav {
+    justify-content: center;
+  }
+
+  .toast-area {
+    right: .75rem;
+    left: .75rem;
+    align-items: center;
+  }
+
+  .toast {
+    max-width: 100%;
+    width: 100%;
+  }
+}

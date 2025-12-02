@@ -4,61 +4,233 @@
   --gris:#6b7280;
   --rojo:#e11d48;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fafafa;color:#111}
 
-.login-page{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-.login-toolbar{position:absolute;left:24px;top:16px}
-.btn-back{
-  text-decoration:none;background:#fff;border:1px solid var(--azul);color:#fff;
-  padding:8px 14px;border-radius:10px;background:var(--azul);font-weight:700;
-  box-shadow:0 2px 0 rgba(0,0,0,.12)
+*{box-sizing:border-box}
+
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#fafafa;
+  color:#111;
 }
 
+/* ========= CONTENEDOR LOGIN ========= */
+.login-page{
+  min-height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  position:relative;
+}
+
+/* ========= BOTÓN VOLVER ========= */
+.login-toolbar{
+  position:absolute;
+  left:24px;
+  top:16px;
+}
+
+.btn-back{
+  text-decoration:none;
+  background:#fff;
+  border:1px solid var(--azul);
+  color:#fff;
+  padding:8px 14px;
+  border-radius:10px;
+  background:var(--azul);
+  font-weight:700;
+  box-shadow:0 2px 0 rgba(0,0,0,.12);
+}
+
+/* En móviles muy pequeños centramos mejor el botón */
+@media (max-width:480px){
+  .login-toolbar{
+    position:static;
+    align-self:flex-start;
+    margin-bottom:10px;
+  }
+}
+
+/* ========= CARD LOGIN ========= */
 .login-card{
-  width:420px;max-width:95vw;background:#fff;border:1px solid var(--borde);
-  border-radius:18px;box-shadow:0 10px 24px rgba(0,0,0,.06);
+  width:420px;
+  max-width:95vw;
+  background:#fff;
+  border:1px solid var(--borde);
+  border-radius:18px;
+  box-shadow:0 10px 24px rgba(0,0,0,.06);
   padding:28px 26px 26px;
 }
-.login-title{margin:0 0 14px;font-size:28px;text-align:center}
 
-.form-group{margin:14px 0}
-.form-group label{display:block;font-weight:700;margin-bottom:6px}
-.form-group input{
-  width:100%;height:44px;border:1px solid #c9cdd4;border-radius:10px;
-  padding:0 12px;font-size:16px;outline:none;transition:border-color .2s, box-shadow .2s;
-  background:#fff;
+.login-title{
+  margin:0 0 14px;
+  font-size:28px;
+  text-align:center;
 }
-.form-group input:focus{border-color:var(--azul);box-shadow:0 0 0 3px rgba(10,116,255,.15)}
-.msg{display:block;margin-top:6px;color:var(--rojo);font-size:13px;height:16px}
 
-.password-wrap{position:relative}
-.password-wrap .toggle-pass{
-  position:absolute;right:8px;top:50%;transform:translateY(-50%);
-  border:none;background:transparent;cursor:pointer;font-size:18px;line-height:1;opacity:.65
+/* Ajustes tablet / móvil */
+@media (max-width:768px){
+  .login-page{
+    padding:20px 16px;
+  }
+  .login-card{
+    padding:24px 20px 22px;
+  }
+  .login-title{
+    font-size:24px;
+  }
 }
-.password-wrap .toggle-pass:hover{opacity:1}
-
-.form-row{display:flex;align-items:center;justify-content:space-between;margin:6px 0 12px}
-.remember{display:flex;align-items:center;gap:8px;color:#333}
-.link{text-decoration:none;font-size:14px;color:var(--azul)}
-
-.btn-primary{
-  position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;
-  width:100%;height:48px;border-radius:12px;border:1px solid var(--azul);background:var(--azul);
-  color:#fff;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.15);
-  transition:transform .1s, filter .2s, box-shadow .2s;
-}
-.btn-primary:hover{filter:brightness(1.05)}
-.btn-primary:active{transform:translateY(1px);box-shadow:0 1px 0 rgba(0,0,0,.15)}
-.btn-primary[disabled]{opacity:.6;cursor:not-allowed;box-shadow:none}
-
-/* Ripple */
-.btn-ripple{position:absolute;border-radius:50%;transform:scale(0);
-  animation:ripple .55s ease-out;background:rgba(255,255,255,.45);pointer-events:none}
-@keyframes ripple{to{transform:scale(4);opacity:0}}
 
 @media (max-width:420px){
-  .login-card{padding:22px 18px}
+  .login-card{
+    padding:22px 18px;
+  }
+  .login-title{
+    font-size:22px;
+  }
+}
+
+/* ========= CAMPOS ========= */
+.form-group{
+  margin:14px 0;
+}
+
+.form-group label{
+  display:block;
+  font-weight:700;
+  margin-bottom:6px;
+}
+
+.form-group input{
+  width:100%;
+  height:44px;
+  border:1px solid #c9cdd4;
+  border-radius:10px;
+  padding:0 12px;
+  font-size:16px;
+  outline:none;
+  transition:border-color .2s, box-shadow .2s;
+  background:#fff;
+}
+
+.form-group input:focus{
+  border-color:var(--azul);
+  box-shadow:0 0 0 3px rgba(10,116,255,.15);
+}
+
+.msg{
+  display:block;
+  margin-top:6px;
+  color:var(--rojo);
+  font-size:13px;
+  min-height:16px;
+}
+
+/* ========= PASSWORD + OJO ========= */
+.password-wrap{
+  position:relative;
+}
+
+.password-wrap .toggle-pass{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+  opacity:.65;
+}
+
+.password-wrap .toggle-pass:hover{
+  opacity:1;
+}
+
+/* ========= FILA RECORDAR / OLVIDASTE ========= */
+.form-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin:6px 0 12px;
+  gap:8px;
+}
+
+.remember{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#333;
+  font-size:14px;
+}
+
+.link{
+  text-decoration:none;
+  font-size:14px;
+  color:var(--azul);
+}
+
+/* En móviles apilamos la fila */
+@media (max-width:480px){
+  .form-row{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+/* ========= BOTÓN LOGIN ========= */
+.btn-primary{
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  height:48px;
+  border-radius:12px;
+  border:1px solid var(--azul);
+  background:var(--azul);
+  color:#fff;
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 3px 0 rgba(0,0,0,.15);
+  transition:transform .1s, filter .2s, box-shadow .2s;
+}
+
+.btn-primary:hover{
+  filter:brightness(1.05);
+}
+
+.btn-primary:active{
+  transform:translateY(1px);
+  box-shadow:0 1px 0 rgba(0,0,0,.15);
+}
+
+.btn-primary[disabled]{
+  opacity:.6;
+  cursor:not-allowed;
+  box-shadow:none;
+}
+
+/* ========= EFECTO RIPPLE ========= */
+.btn-ripple{
+  position:absolute;
+  border-radius:50%;
+  transform:scale(0);
+  animation:ripple .55s ease-out;
+  background:rgba(255,255,255,.45);
+  pointer-events:none;
+}
+
+@keyframes ripple{
+  to{
+    transform:scale(4);
+    opacity:0;
+  }
 }

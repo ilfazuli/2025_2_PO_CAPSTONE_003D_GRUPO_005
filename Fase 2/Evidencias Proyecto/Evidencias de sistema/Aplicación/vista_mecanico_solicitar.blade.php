@@ -14,7 +14,7 @@
       <a class="btn btn-ghost" href="{{ url('/mecanico') }}">← Volver</a>
     </header>
 
-    {{-- Mensajes (opcional) --}}
+    {{-- Mensajes --}}
     @if (session('status'))
       <div class="alert ok">{{ session('status') }}</div>
     @endif
@@ -48,7 +48,6 @@
           <label for="mecanico_id">Mecánico solicitante</label>
           <select id="mecanico_id" name="mecanico_id" required>
             <option value="">Seleccionar…</option>
-            {{-- Ejemplos. Cuando conectes backend, itera tus usuarios-rol MECANICO --}}
             <option value="1">Juan</option>
             <option value="2">Miguel</option>
             <option value="3">Benja</option>
@@ -57,9 +56,6 @@
         </div>
 
         <div class="actions">
-          <button id="btnEnviar" type="submit" class="btn btn-primary" disabled>
-            Solicitar repuesto
-          </button>
         </div>
       </form>
     </div>

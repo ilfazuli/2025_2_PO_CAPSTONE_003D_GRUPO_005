@@ -4,48 +4,111 @@ document.addEventListener('DOMContentLoaded', () => {
   const password   = document.getElementById('password');
   const btnLogin   = document.getElementById('btnLogin');
   const togglePass = document.querySelector('.toggle-pass');
-  const icon = togglePass.querySelector('i');
+  const icon       = togglePass?.querySelector('i');
   const msgEmail   = document.querySelector('.msg[data-for="email"]');
   const msgPass    = document.querySelector('.msg[data-for="password"]');
 
+  // Regex básico: algo@algo.dominio
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-  function validate() {
-    let ok = true;
+  // Si el backend ya dejó un mensaje de error.
+  let touchedEmail = !!(msgEmail && msgEmail.textContent.trim().length);
+  let touchedPass  = !!(msgPass && msgPass.textContent.trim().length);
 
-    if (!email.value.trim()) {
+  if (touchedEmail) msgEmail.classList.add('is-error');
+  if (touchedPass)  msgPass.classList.add('is-error');
+
+  function validateEmail() {
+    if (!touchedEmail) return true;
+
+    const value = email.value.trim();
+    if (!value) {
       msgEmail.textContent = 'Ingresa tu correo';
-      ok = false;
-    } else if (!emailRegex.test(email.value.trim())) {
-      msgEmail.textContent = 'Correo inválido';
-      ok = false;
-    } else {
-      msgEmail.textContent = '';
+      msgEmail.classList.add('is-error');
+      return false;
+    }
+    if (!emailRegex.test(value)) {
+      msgEmail.textContent = 'Ingresa un correo válido (ej: usuario@dominio.cl)';
+      msgEmail.classList.add('is-error');
+      return false;
     }
 
-    if (!password.value) {
-      msgPass.textContent = 'Ingresa tu contraseña';
-      ok = false;
-    } else {
-      msgPass.textContent = '';
-    }
-
-    btnLogin.disabled = !ok;
-    return ok;
+    msgEmail.textContent = '';
+    msgEmail.classList.remove('is-error');
+    return true;
   }
 
-  email.addEventListener('input', validate);
-  password.addEventListener('input', validate);
+  function validatePassword() {
+    if (!touchedPass) return true;
 
-  togglePass.addEventListener('click', () => {
+    const value = password.value;
+    if (!value) {
+      msgPass.textContent = 'Ingresa tu contraseña';
+      msgPass.classList.add('is-error');
+      return false;
+    }
+    if (value.length < 6) {
+      msgPass.textContent = 'La contraseña debe tener al menos 6 caracteres';
+      msgPass.classList.add('is-error');
+      return false;
+    }
+
+    msgPass.textContent = '';
+    msgPass.classList.remove('is-error');
+    return true;
+  }
+
+  function validateForm() {
+    const okEmail = validateEmail();
+    const okPass  = validatePassword();
+    btnLogin.disabled = !(okEmail && okPass);
+    return okEmail && okPass;
+  }
+
+  // Eventos EMAIL
+  email.addEventListener('input', () => {
+    if (touchedEmail) validateEmail();
+    validateForm();
+  });
+
+  email.addEventListener('blur', () => {
+    touchedEmail = true;
+    validateForm();
+  });
+
+  // Eventos PASSWORD
+  password.addEventListener('input', () => {
+    if (touchedPass) validatePassword();
+    validateForm();
+  });
+
+  password.addEventListener('blur', () => {
+    touchedPass = true;
+    validateForm();
+  });
+
+  // Mostrar / ocultar contraseña
+  togglePass?.addEventListener('click', () => {
     const isPass = password.getAttribute('type') === 'password';
     password.setAttribute('type', isPass ? 'text' : 'password');
-    icon.classList.toggle('bi-eye-fill');
-    icon.classList.toggle('bi-eye-slash-fill');
+    if (icon) {
+      icon.classList.toggle('bi-eye-fill');
+      icon.classList.toggle('bi-eye-slash-fill');
+    }
     password.focus();
   });
+
+  // Efecto ripple del botón + validación al click
   btnLogin.addEventListener('click', (e) => {
-    if (btnLogin.disabled) return;
+    touchedEmail = true;
+    touchedPass  = true;
+
+    if (!validateForm()) {
+      // Si la validación del front falla, no mandamos el form
+      e.preventDefault();
+      return;
+    }
+
     const rect = btnLogin.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
     const x = e.clientX - rect.left - size / 2;
@@ -61,5 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnLogin.appendChild(r);
     r.addEventListener('animationend', () => r.remove());
   });
-  validate();
+
+  // Validar una vez al cargar (por si viene email precargado)
+  validateForm();
 });

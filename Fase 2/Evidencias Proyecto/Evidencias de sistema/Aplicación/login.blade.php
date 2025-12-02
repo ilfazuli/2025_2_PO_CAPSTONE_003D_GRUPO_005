@@ -12,37 +12,71 @@
 
 <body>
   <div class="login-page">
-
-    {{-- (Opcional) Volver al menú chofer --}}
-    <div class="login-toolbar">
-      <a href="{{ url('/') }}" class="btn-back">← Volver</a>
-    </div>
-
     <div class="login-card">
       <h1 class="login-title">Iniciar sesión</h1>
+      @if ($errors->any())
+        <div class="alert error">
+          {{ $errors->first() }}
+        </div>
+      @endif
 
-      {{-- Cuando conectes backend, cambia action y mantén @csrf --}}
       <form id="loginForm" method="POST" action="{{ route('login.attempt') }}">
         @csrf
 
         <div class="form-group">
           <label for="email">Correo</label>
-          <input id="email" name="email" type="email" placeholder="tucorreo@laflotapepsiman.cl" autocomplete="username" required>
-          <small class="msg" data-for="email"></small>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder="tucorreo@laflotapepsiman.cl"
+            autocomplete="username"
+            value="{{ old('email') }}"
+            required
+          >
+          <small
+            class="msg {{ $errors->has('email') ? 'is-error' : '' }}"
+            data-for="email"
+          >
+            @error('email')
+              {{ $message }}
+            @enderror
+          </small>
         </div>
 
         <div class="form-group">
           <label for="password">Contraseña</label>
           <div class="password-wrap">
-            <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required>
-            <button type="button" class="toggle-pass" aria-label="Mostrar u ocultar contraseña"><i class="bi bi-eye-fill"></i></button>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            >
+            <button
+              type="button"
+              class="toggle-pass"
+              aria-label="Mostrar u ocultar contraseña"
+            >
+              <i class="bi bi-eye-fill"></i>
+            </button>
           </div>
-          <small class="msg" data-for="password"></small>
+          <small
+            class="msg {{ $errors->has('password') ? 'is-error' : '' }}"
+            data-for="password"
+          >
+            @error('password')
+              {{ $message }}
+            @enderror
+          </small>
         </div>
 
         <div class="form-row">
           <label class="remember">
-            <input type="checkbox" id="remember" name="remember"> Recordarme
+            <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
+            Recordarme
           </label>
           <a href="{{ route('password.request') }}" class="link">¿Olvidaste tu contraseña?</a>
         </div>

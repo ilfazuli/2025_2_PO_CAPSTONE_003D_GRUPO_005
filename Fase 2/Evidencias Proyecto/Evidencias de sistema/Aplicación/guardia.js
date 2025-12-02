@@ -1,46 +1,99 @@
+// resources/js/guardia.js
+
 document.addEventListener('DOMContentLoaded', () => {
-  const open = document.getElementById('btn-open-modal');
-  const close = document.getElementById('btn-close-modal');
-  const cancel = document.getElementById('btn-cancelar');
-  const modal = document.getElementById('modal-agregar');
+  const $  = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
-  const show = () => modal && modal.classList.remove('hidden');
-  const hide = () => modal && modal.classList.add('hidden');
+  const openEl  = el => el && el.classList.remove('hidden');
+  const closeEl = el => el && el.classList.add('hidden');
 
-  open && open.addEventListener('click', show);
-  close && close.addEventListener('click', hide);
-  cancel && cancel.addEventListener('click', hide);
+  // ==========================================
+  // MODAL: AGREGAR VEHÍCULO (ENTRADA)
+  // ==========================================
+  (function initModalVehiculo () {
+    const modal   = $('#modal-vehiculo');
+    const openBtn = $('#btn-open-modal-vehiculo');
 
-  modal && modal.addEventListener('click', (e) => {
-    if (e.target === modal) hide();
-  });
+    if (!modal || !openBtn) return;
+
+    // Abrir modal
+    openBtn.addEventListener('click', () => {
+      openEl(modal);
+    });
+
+    // Cerrar por botones con data-close="#modal-vehiculo"
+    $$('[data-close="#modal-vehiculo"]').forEach(btn => {
+      btn.addEventListener('click', () => closeEl(modal));
+    });
+
+    // Cerrar al hacer click en el fondo oscuro
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeEl(modal);
+    });
+  })();
 
 
+  // ==========================================
+  // MODAL: REGISTRAR SALIDA
+  // ==========================================
+  (function initModalSalida () {
+    const modal     = $('#modal-salida');
+    const form      = $('#form-salida');
+    const spanPat   = $('#salida_patente');
+    const inputHora = $('#salida_hora');
 
-  const btn = document.getElementById('btn-profile');
-  const menu = document.getElementById('menu-profile');
+    if (!modal || !form) return;
 
-  const openMenu = () => {
-    menu.classList.remove('hidden');
-    btn.setAttribute('aria-expanded', 'true');
-  };
-  const closeMenu = () => {
-    menu.classList.add('hidden');
-    btn.setAttribute('aria-expanded', 'false');
-  };
+    // Abrir modal al hacer click en "Terminar"
+    $$('.js-terminar-ingreso').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id      = btn.dataset.id;          
+        const patente = btn.dataset.patente || '';
 
-  btn && btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const expanded = btn.getAttribute('aria-expanded') === 'true';
-    expanded ? closeMenu() : openMenu();
-  });
+        // Setear patente visible
+        if (spanPat) spanPat.textContent = patente || '—';
 
-  document.addEventListener('click', (e) => {
-    if (!menu || menu.classList.contains('hidden')) return;
-    if (!menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
-  });
+        // Limpiar hora anterior
+        if (inputHora) inputHora.value = '';
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
+        // Definir action del form
+        form.setAttribute('action', `/guardia/checkin/${id}/salida`);
+
+        openEl(modal);
+      });
+    });
+
+    // Cerrar por botones con data-close="#modal-salida"
+    $$('[data-close="#modal-salida"]').forEach(btn => {
+      btn.addEventListener('click', () => closeEl(modal));
+    });
+
+    // Cerrar al hacer click en el fondo oscuro
+    modal.addEventListener('click', e => {
+      if (e.target === modal) closeEl(modal);
+    });
+
+    // Pequeña validación antes de enviar
+    form.addEventListener('submit', e => {
+      if (!inputHora || !inputHora.value) {
+        e.preventDefault();
+        inputHora?.focus();
+      }
+    });
+  })();
+
+
+  // ==========================================
+  // Botón "Editar" para futuro
+  // ==========================================
+  (function initEditarIngreso () {
+    // De momento no hace nada crítico, sólo un placeholder
+    $$('.js-editar-ingreso').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Aquí más adelante podríamos abrir otro modal de edición
+        console.log('Editar ingreso ID:', btn.dataset.id);
+      });
+    });
+  })();
+
 });
